@@ -11,13 +11,13 @@ public abstract class MainCommand extends Command {
 	private final int requiredArgs;
 
 	public MainCommand(JavaPlugin plugin, String name, String usage, int requiredArgs) {
-		super(plugin, name, usage, i -> false);
+		super(plugin, name, usage, i -> i == requiredArgs);
 		this.requiredArgs = requiredArgs;
 		initChildren();
 	}
 
 	public MainCommand(JavaPlugin plugin, String name, String usage, int requiredArgs, List<Command> children) {
-		super(plugin, name, usage, i -> false, children);
+		super(plugin, name, usage, i -> i == requiredArgs, children);
 		this.requiredArgs = requiredArgs;
 	}
 
@@ -38,7 +38,7 @@ public abstract class MainCommand extends Command {
 
 	public void execute(CommandSender sender, List<String> args) {
 
-		if (args.size() < requiredArgs || args.isEmpty()) {
+		if (!getArgumentCount().test(args.size())) {
 			sender.sendMessage(String.format("§cUSAGE: %s", getUsage()));
 			return;
 		}
@@ -55,7 +55,7 @@ public abstract class MainCommand extends Command {
 		Command subCommand = subOptional.get();
 		List<String> subArgs = new ArrayList<>();
 
-		if (args.size() > requiredArgs)
+		if (getArgumentCount().test(args.size()))
 				subArgs.addAll(args.subList(Math.max(requiredArgs, 1), args.size()));
 
 		if (!subCommand.getArgumentCount().test(subArgs.size())) {
