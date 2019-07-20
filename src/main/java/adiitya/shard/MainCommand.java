@@ -10,10 +10,14 @@ public abstract class MainCommand extends Command {
 
 	private final int requiredArgs;
 
-	public MainCommand(JavaPlugin plugin, String name, String usage, int requiredArgs) {
-		super(plugin, name, usage, i -> i == requiredArgs);
+	public MainCommand(JavaPlugin plugin, boolean async, String name, String usage, int requiredArgs) {
+		super(plugin, async, name, usage, i -> i == requiredArgs);
 		this.requiredArgs = requiredArgs;
 		initChildren();
+	}
+
+	public MainCommand(JavaPlugin plugin, String name, String usage, int requiredArgs) {
+		this(plugin, false, name, usage, requiredArgs);
 	}
 
 	protected abstract void initChildren();
