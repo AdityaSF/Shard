@@ -16,17 +16,17 @@ public abstract class MainCommand extends Command {
 		initChildren();
 	}
 
-	public MainCommand(JavaPlugin plugin, String name, String usage, int requiredArgs, List<Command> children) {
-		super(plugin, name, usage, i -> i == requiredArgs, children);
-		this.requiredArgs = requiredArgs;
-	}
-
 	protected abstract void initChildren();
 
 	@Override
 	public final boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
 
-		Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> execute(sender, Arrays.asList(args)));
+		List<String> argList = new ArrayList<>(Arrays.asList(args));
+
+		if (isAsync())
+			Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> execute(sender, argList));
+		else
+			Bukkit.getScheduler().runTask(plugin, () -> execute(sender, argList));
 
 		return true;
 	}
