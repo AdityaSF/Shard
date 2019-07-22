@@ -11,7 +11,7 @@ public abstract class MainCommand extends Command {
 	private final int requiredArgs;
 
 	public MainCommand(JavaPlugin plugin, boolean async, String name, String usage, int requiredArgs) {
-		super(plugin, async, name, usage, i -> i == requiredArgs);
+		super(plugin, async, name, usage, i -> i >= requiredArgs);
 		this.requiredArgs = requiredArgs;
 		initChildren();
 	}
@@ -20,10 +20,18 @@ public abstract class MainCommand extends Command {
 		this(plugin, false, name, usage, requiredArgs);
 	}
 
+	public MainCommand(JavaPlugin plugin, boolean async, String name, String usage) {
+		this(plugin, async, name, usage, 0);
+	}
+
+	public MainCommand(JavaPlugin plugin, String name, String usage) {
+		this(plugin, false, name, usage, 0);
+	}
+
 	protected abstract void initChildren();
 
 	@Override
-	public final boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+	public final boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String alias, String[] args) {
 
 		List<String> argList = new ArrayList<>(Arrays.asList(args));
 
