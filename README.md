@@ -18,6 +18,7 @@ command API for [LuckPerms](https://github.com/lucko/LuckPerms).
 * Simple subcommand structure
 * New tab completion API
 * Vanilla style commands for simple command uses
+* Command aliases
 
 ## Usage
 Shard is not currently deployed anywhere, so you must install it manually:
