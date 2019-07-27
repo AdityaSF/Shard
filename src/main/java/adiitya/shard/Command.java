@@ -52,12 +52,14 @@ public abstract class Command implements TabExecutor {
 	public abstract List<String> tabComplete(CommandSender sender, List<String> args);
 
 	/**
-	 * This method should provide a list of aliases for this command. If
-	 * returning an empty list, only the command name will be registered.
+	 * This method should be overridden if aliases are required. It will
+	 * return an empty ArrayList by default.
 	 *
 	 * @return The aliases
 	 */
-	public abstract List<String> getAliases();
+	public List<String> getAliases() {
+		return new ArrayList<>();
+	}
 
 	public String getUsage() {
 		return String.format("/%s", getRawUsage());
