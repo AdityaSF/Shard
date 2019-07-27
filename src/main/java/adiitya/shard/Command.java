@@ -31,8 +31,32 @@ public abstract class Command implements TabExecutor {
 		this.argumentCount = argumentCount;
 	}
 
+	/**
+	 * This method should be overwritten to provide command functionality.
+	 * This method will be called synchronously or asynchronously depending
+	 * on what is specified in the constructor.
+	 *
+	 * @param sender The sender
+	 * @param args The args
+	 */
 	public abstract void execute(CommandSender sender, List<String> args);
+
+	/**
+	 * This methos should be overwritten to provide command functionality.
+	 * This method should provide a list of completions based on {@code args}.
+	 *
+	 * @param sender The sender
+	 * @param args The args
+	 * @return The completions to be displayed
+	 */
 	public abstract List<String> tabComplete(CommandSender sender, List<String> args);
+
+	/**
+	 * This method should provide a list of aliases for this command. If
+	 * returning an empty list, only the command name will be registered.
+	 *
+	 * @return The aliases
+	 */
 	public abstract List<String> getAliases();
 
 	public String getUsage() {

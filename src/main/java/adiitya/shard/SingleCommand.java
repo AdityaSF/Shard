@@ -10,11 +10,26 @@ import java.util.List;
 
 public abstract class SingleCommand extends Command {
 
+	/**
+	 * Convenience method for creating a synchronous command
+	 *
+	 * @param plugin The plugin
+	 * @param name The command name
+	 * @param usage The usage
+	 */
 	public SingleCommand(JavaPlugin plugin, String name, String usage) {
 
 		super(plugin, false, name, usage, i -> false);
 	}
 
+	/**
+	 * Creates a command with the specified synchronocity.
+	 *
+	 * @param plugin The plugin
+	 * @param async Whether to run asynchronously
+	 * @param name The command name
+	 * @param usage The usage
+	 */
 	public SingleCommand(JavaPlugin plugin, boolean async, String name, String usage) {
 
 		super(plugin, async, name, usage, i -> false);

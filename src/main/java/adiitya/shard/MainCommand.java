@@ -28,6 +28,10 @@ public abstract class MainCommand extends Command {
 		this(plugin, false, name, usage, 0);
 	}
 
+	/**
+	 * This method will be called immediately after the object is constructed.
+	 * This method should only be used to register children.
+	 */
 	protected abstract void initChildren();
 
 	@Override
@@ -48,6 +52,7 @@ public abstract class MainCommand extends Command {
 		return tabComplete(sender, Arrays.asList(args));
 	}
 
+	@Override
 	public void execute(CommandSender sender, List<String> args) {
 
 		if (!getArgumentCount().test(args.size())) {
@@ -78,6 +83,7 @@ public abstract class MainCommand extends Command {
 		subCommand.execute(sender, subArgs);
 	}
 
+	@Override
 	public List<String> tabComplete(CommandSender sender, List<String> args) {
 		return Collections.emptyList();
 	}
