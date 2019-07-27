@@ -49,7 +49,7 @@ public final class TabCompleter {
 		List<String> results = new ArrayList<>();
 		String search = args.get(args.size() - 1);
 
-		completionMap.getOrDefault(args.size(), new ArrayList<>())
+		completionMap.getOrDefault(args.size() - 1, new ArrayList<>())
 				.stream()
 				.filter(c -> c.passes(search))
 				.forEach(c -> results.add(c.getResult()));
