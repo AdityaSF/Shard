@@ -4,6 +4,7 @@ A command API for Spigot/Bukkit for 1.14
 ## Table of Contents
 * [Overview](#overview)
 * [Features](#features)
+* [Usage](#usage)
 * [Examples](#examples)
 
 ## Overview
@@ -17,6 +18,22 @@ command API for [LuckPerms](https://github.com/lucko/LuckPerms).
 * Simple subcommand structure
 * New tab completion API
 * Vanilla style commands for simple command uses
+
+## Usage
+Shard is not currently deployed anywhere, so you must install it manually:
+```
+mvn clean install
+```
+Once installed, you can add it to your project:
+```xml
+<dependencies>
+    <dependency>
+        <groupId>adiitya.spigot</groupId>
+        <artifactId>shard</artifactId>
+        <version>@VERSION@</version>
+    </dependency>
+</dependencies>
+```
 
 ## Examples
 Creating a simple command:
